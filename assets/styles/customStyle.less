@@ -1,0 +1,102 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+.btn-group .btn-default {
+    text-align: center;
+}
+
+.btn-group .btn-default .btn-img,
+.btn-group .btn-default p {
+    display: flex;
+    vertical-align: middle;
+}
+
+.btn-material {
+    background: url("/images/home/material.jpg");
+}
+
+.btn-order{
+    background: url("/images/home/order.jpg");
+    background-position: right; 
+}
+
+.btn-blurprint{
+    background: url("/images/home/blurprint.jpg");
+}
+
+.btn-card {
+    overflow:hidden;
+    padding: 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.btn-img {
+    margin: 0;
+    width: 100%;
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size: 75.28vh 50vh;
+    
+    
+    -webkit-transition: all 500ms ;
+    -moz-transition: all 500ms ;
+    -ms-transition: all 500ms ;
+    -o-transition: all 500ms ;
+    transition: all 500ms ;
+}
+
+@media only screen and (max-width: 768px) {
+    .btn-img {
+        height: 25vh;
+        background-size: 37.64vh 25vh;
+    }
+}
+
+.btn-img:hover {
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+}
+
+.fixed-top {
+    -webkit-transition: background-color 0.2s linear; /* For Safari 3.1 to 6.0 */
+    transition: background-color 0.2s linear;
+}
+
+.jumbotron {
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+    box-shadow: inset 0px 0 15px #000000;
+    margin: 0;
+}
+
+.jumbotron .jumbotron-bg {
+    background-image: url("../images/home/building-material-supply.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    -webkit-filter: brightness(60%) blur(1px);
+    filter: brightness(60%) blur(1px);
+    z-index:-1;    
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom right,#002f4b,#256edc);
+        opacity: .4; 
+    }
+}
+
+#page-wrap {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}

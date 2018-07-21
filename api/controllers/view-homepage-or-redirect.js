@@ -6,13 +6,12 @@ module.exports = {
 
   description: 'Display or redirect to the appropriate homepage, depending on login status.',
 
-
   exits: {
 
     success: {
       statusCode: 200,
       description: 'Requesting user is a guest, so show the public landing page.',
-      viewTemplatePath: 'pages/homepage'
+      viewTemplatePath: 'pages/home'
     },
 
     redirect: {
@@ -29,9 +28,8 @@ module.exports = {
       throw {redirect:'/welcome'};
     }
 
-    return exits.success();
+    return exits.success({layout:"layouts/layoutLanding"});
 
   }
-
 
 };

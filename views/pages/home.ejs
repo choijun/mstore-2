@@ -1,0 +1,32 @@
+<div id="homepage" :class="[heroHeightSet ? '' : 'uninitialized']" v-cloak>
+  <div class=" justify-content-center">
+      <div class="container">
+        <div class="features text-center">
+          
+            <div class="btn-group row" style="width:100%">
+                <a href="#" class="btn btn-secondary col-sm-12 col-md-4 btn-card">
+                    <div class="btn-img btn-material">
+                        <!--<span class="align-bottom" style="height: 100px;">選購建材</span>-->
+                    </div>
+                    <h5>填寫訂單</h5>
+                </a>
+            
+                <a href="#" class="btn btn-secondary col-sm-12 col-md-4 btn-card" >
+                    <div class="btn-img btn-order"></div>
+                    <h5>填寫訂單</h5>
+                </a>
+            
+                <a href="#" class="btn btn-secondary col-sm-12 col-md-4 btn-card">
+                    <div class="btn-img btn-blurprint"></div>
+                    <h5>上傳圖紙</h5>
+                </a>
+            </div>
+          
+          <p>
+            <a class="btn btn-outline-info mt-5" href="/faq">了解更多</a>
+          </p>
+        </div>
+      </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
