@@ -15,8 +15,11 @@
         (https://sailsjs.com/docs/concepts/assets/task-automation)
     */ %>
 
-    <% /* Auto-injected «link» tags: */ %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <% /* Auto-injected «link» tags: */ %>
     <!--STYLES-->
     <link rel="stylesheet" href="/dependencies/bootstrap-4/bootstrap-4.css">
     <link rel="stylesheet" href="/dependencies/font-awesome-4/css/font-awesome.css">
@@ -26,11 +29,11 @@
 
   <body>
     <div id="page-wrap">
-      <header id="page-header" class="fixed-top">
-        <nav class="navbar bg-transparent navbar-expand-md navbar-dark bg-light justify-content-between fixed-top">
+      <header id="page-header">
+        <nav class="navbar navbar-expand bg-transparent navbar-expand-md navbar-dark bg-light justify-content-between fixed-top">
           <div class="container">
-            <a class="navbar-brand text-light">材料易</a>
-            <div class="navbar-collapse collapse" id="collapsingNavbar">
+            <a href="/" class="navbar-brand text-light">材料易</a>
+            <div class="navbar-collapse collapse" id="collapsingNavbar2">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item ml-2 ml-md-0 mr-2">
                         <a class="nav-link" href="/login">登入</a>
@@ -42,38 +45,30 @@
             </div>
           </div>
         </nav>
-        <script>
-          $(function () {
-            var $nav = $(".fixed-top");
-            var sticky = $nav.offset().top;
-            $(document).scroll(function () {
-              var isScrolled = $(this).scrollTop() > sticky;
-              //$nav.toggleClass('scrolled', isScrolled)
-              //$nav.toggleClass("navbar-light", !isScrolled).toggleClass("bg-light", !isScrolled);
-              $nav.toggleClass("bg-transparent", !isScrolled);
-              $nav.toggleClass("bg-dark", isScrolled);
-            });
-          });
-        </script>
+        
         <div class="jumbotron jumbotron-fluid">
+          <div class="jumbotron-preload"></div>
           <div class="jumbotron-bg"></div>
-          <div class="container text-light" style="text-align: center">
+          <div class="container text-light landing-title" style="text-align: center">
             <h1 class="display-4" style="font-weight: 400">材料易</h1>
-            <p class="lead">Short description.</p>
+            <p class="lead">為你帶來 <b>更平易·更快·更直接</b> 的採購體驗</p>
+            <o><a class="btn btn-outline-info" href="/faq">了解更多</a></o>
           </div>
         </div>
-
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
+        
+        <nav id="navbar2" class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
             <div class="container">
-              <form class="form-inline">
+              <form class="col-9 col-sm-10 col-md-5">
                 <div class="input-group">
-                  <select class="custom-select" id="inputGroupSelect01">
+                  <select class="custom-select my-2 col-3 d-none d-sm-block" id="inputGroupSelect01">
                     <option value="category" selected>類別</option>
                     <option value="brand">品牌</option>
                     <option value="product">產品</option>
                   </select>
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="material-icons">search</i></button>
+                  <input class="form-control my-2 col-9 col-sm-12" type="search" placeholder="膠板 西德板" aria-label="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-info my-2" type="submit"><i class="material-icons" style="vertical-align: text-top">search</i></button>
+                  </div>
                 </div>
               </form>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
@@ -109,6 +104,39 @@
               </div>
             </div>
           </nav>
+          <script>
+            // toggle navbar color when scroll
+            $(function () {
+              var nav = $(".fixed-top");
+              var nav2 = $("#navbar2");
+              var content = $(".container-outer");
+              var contentPaddingTop = content.css("padding-top").replace('px', '');
+              var navHeight = nav.outerHeight();
+              var navHeight2 = nav2.outerHeight() + Number(contentPaddingTop);
+              var sticky = nav2.offset().top - navHeight;
+              $(document).scroll(updateNavbar);
+  
+              function updateNavbar() {
+                var scrollTop = $(this).scrollTop();
+                //navbar 1
+                var isScrolled = scrollTop > 0;
+                nav.toggleClass("bg-transparent", !isScrolled);
+                nav.toggleClass("bg-dark", isScrolled);
+                
+                //navbar 2
+                isScrolled = scrollTop > sticky;
+                nav2.toggleClass("fixed-top", isScrolled);
+                nav2.css("top", isScrolled?navHeight:0);
+                content.css("padding-top", (isScrolled?navHeight2:contentPaddingTop) + "px");
+              }
+              updateNavbar();
+            });
+            //fadein cover image
+            $('.jumbotron-bg').imagesLoaded( { background: true }, function(instance) {
+              $('.jumbotron-bg').addClass('jumbotron-loaded');
+              $(".landing-title").addClass('landing-title-loaded');
+            });
+          </script>
       </header>
 
       <!-- Alert if email has not been confirmed -->
@@ -126,18 +154,24 @@
       </div>
       <% } %>
 
-      <%- body %>
-
-      <footer id="page-footer" class="navbar navbar-light justify-content-between flex-row-reverse">
-        <div class="nav">
-          <small class="nav-item"><a class="nav-link text-info" href="/contact">Contact<span class="d-none d-sm-inline"> us</span></a></small>
-          <small class="nav-item"><a class="nav-link text-info" href="/legal/terms">Terms<span class="d-none d-sm-inline"> of Use</span></a></small>
-          <small class="nav-item"><a class="nav-link text-info" href="/legal/privacy">Privacy<span class="d-none d-sm-inline"> policy</span></a></small>
-          <% if(me) { %>
-          <small class="nav-item"><a class="nav-link text-info" href="/logout">Sign out</a></small>
-          <% } %>
+      <div class="container-outer">
+        <div class="container">
+          <%- body %>
         </div>
-        <small class="copy">Copyright &copy; 2018 NEW_APP_COMPANY. <br class="xs-only"/>All rights reserved.</small>
+      </div>
+
+      <footer id="page-footer" class="navbar navbar-dark bg-dark justify-content-between">
+        <div class="container flex-row-reverse">
+          <div class="nav">
+            <small class="nav-item"><a class="nav-link text-info" href="/contact">Contact<span class="d-none d-sm-inline"> us</span></a></small>
+            <small class="nav-item"><a class="nav-link text-info" href="/legal/terms">Terms<span class="d-none d-sm-inline"> of Use</span></a></small>
+            <small class="nav-item"><a class="nav-link text-info" href="/legal/privacy">Privacy<span class="d-none d-sm-inline"> policy</span></a></small>
+            <% if(me) { %>
+            <small class="nav-item"><a class="nav-link text-info" href="/logout">Sign out</a></small>
+            <% } %>
+          </div>
+          <small class="copy text-light">Copyright &copy; 2018 Home Supply. <br class="xs-only"/>All rights reserved.</small>
+        </div>
       </footer>
     </div>
 

@@ -1,5 +1,34 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
 
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 .btn-group .btn-default {
     text-align: center;
 }
@@ -71,8 +100,19 @@
     margin: 0;
 }
 
+.jumbotron .jumbotron-preload {
+    background-color: #243447;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:-2;
+}
+
 .jumbotron .jumbotron-bg {
-    background-image: url("../images/home/building-material-supply.jpg");
+    visibility: hidden;
+    background-image: url("/images/home/building-material-supply2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; 
@@ -83,7 +123,11 @@
     bottom:0;
     -webkit-filter: brightness(60%) blur(1px);
     filter: brightness(60%) blur(1px);
-    z-index:-1;    
+    z-index:-1;
+
+    opacity: 0;
+    transform: scale(1);
+    transition: all 1.5s ease-out;
 
     &:before {
         content: '';
@@ -97,6 +141,82 @@
     }
 }
 
+.jumbotron .jumbotron-loaded {
+    visibility: unset;
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+.landing-title {
+    transition: all 1.5s ease-out;
+    transform: scale(0.9);
+}
+
+.landing-title.landing-title-loaded {
+    transform: scale(1);
+}
+
 #page-wrap {
     font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.container-outer {
+    padding: 2.5em 0;
+    background-color: #eee;
+    
+}
+
+.content-card {
+    padding: 1em;
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+    background-color: white;
+    width: 100%;
+    -moz-box-shadow:4px 4px 3px rgba(20%,20%,40%,0.5);
+    -webkit-box-shadow:4px 4px 3px rgba(20%,20%,40%,0.5);
+    box-shadow:4px 4px 3px rgba(20%,20%,40%,0.5);
+}
+
+.symbol-center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.symbol-center-v {
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+    position: relative
+}
+
+.symbol-center-v i {
+    margin: 0;
+    position: absolute;              
+    top: 50%; 
+    left: 50%;                       
+    transform: translate(-50%, -50%)
+}
+
+
+.symbol-l {
+    font-size: 36px;
+}
+
+.symbol-next {
+    position: absolute;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0px;
+    -webkit-animation: next 1s infinite  alternate;
+    animation: next 1s infinite  alternate;
+}
+
+@-webkit-keyframes next {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+}
+@keyframes next {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
 }
