@@ -255,6 +255,7 @@ module.exports = {
     //   'https://staging.example.com',
     // ],
 
+    onlyAllowOrigins: ["https://mstore-stage.herokuapp.com/"],
 
     /***************************************************************************
     *                                                                          *
