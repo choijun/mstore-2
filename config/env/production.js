@@ -356,7 +356,7 @@ module.exports = {
   * provider's dashboard-- not here.)                                       *
   *                                                                         *
   * > For more information about configuring SSL in Sails, see:             *
-  * > https://sailsjs.com/config/*#?sailsconfigssl                          *
+  * > https://sailsjs.com/config/*#?saiheroku pslsconfigssl                          *
   *                                                                         *
   **************************************************************************/
   // ssl: undefined,
